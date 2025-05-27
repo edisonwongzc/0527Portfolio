@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标事件测试</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+        }
+        
+        #testArea {
+            width: 100%;
+            height: 400px;
+            background: #333;
+            border: 3px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: crosshair;
+        }
+        
+        #cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        
+        #log {
+            margin-top: 20px;
+            height: 200px;
+            overflow-y: auto;
+            background: #111;
+            padding: 10px;
+            border: 1px solid #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 纯HTML鼠标事件测试</h1>
+    <p>如果这个页面的鼠标事件工作正常，说明问题出在React应用中。</p>
+    
+    <div id="testArea">
+        移动鼠标到这里 - 应该看到红色圆点跟随
+    </div>
+    
+    <div id="cursor"></div>
+    
+    <div id="log">
+        <div>等待鼠标事件...</div>
+    </div>
+    
+    <script>
+        const cursor = document.getElementById('cursor');
+        const log = document.getElementById('log');
+        const testArea = document.getElementById('testArea');
+        
+        let moveCount = 0;
+        let clickCount = 0;
+        
+        function addLog(message) {
+            const div = document.createElement('div');
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.appendChild(div);
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        // 鼠标移动事件
+        document.addEventListener('mousemove', function(e) {
+            moveCount++;
+            
+            // 更新光标位置
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            // 每10次移动记录一次
+            if (moveCount % 10 === 0) {
+                addLog(`鼠标移动 #${moveCount}: (${e.clientX}, ${e.clientY})`);
+            }
+        });
+        
+        // 点击事件
+        document.addEventListener('click', function(e) {
+            clickCount++;
+            addLog(`鼠标点击 #${clickCount}: (${e.clientX}, ${e.clientY})`);
+            
+            // 创建点击效果
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: fixed;
+                left: ${e.clientX - 25}px;
+                top: ${e.clientY - 25}px;
+                width: 50px;
+                height: 50px;
+                border: 2px solid #00ff00;
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 10000;
+                animation: ripple 0.6s ease-out forwards;
+            `;
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    0% { transform: scale(0); opacity: 1; }
+                    100% { transform: scale(2); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+                style.remove();
+            }, 600);
+        });
+        
+        // 鼠标进入/离开测试区域
+        testArea.addEventListener('mouseenter', function() {
+            addLog('✅ 鼠标进入测试区域');
+            testArea.style.background = '#444';
+        });
+        
+        testArea.addEventListener('mouseleave', function() {
+            addLog('❌ 鼠标离开测试区域');
+            testArea.style.background = '#333';
+        });
+        
+        // 5秒后显示统计
+        setTimeout(() => {
+            addLog(`📊 5秒统计: 移动${moveCount}次, 点击${clickCount}次`);
+            
+            if (moveCount === 0) {
+                addLog('🚨 严重问题：原生HTML页面也无法检测鼠标事件！');
+                addLog('可能原因：浏览器扩展、系统软件、安全设置');
+            } else {
+                addLog('✅ 原生HTML鼠标事件正常，问题在React应用中');
+            }
+        }, 5000);
+        
+        // 页面加载完成
+        addLog('🚀 测试页面已加载，请移动鼠标和点击');
+        addLog(`浏览器: ${navigator.userAgent.split(' ').pop()}`);
+        addLog(`页面焦点: ${document.hasFocus()}`);
+        addLog(`屏幕尺寸: ${window.innerWidth}x${window.innerHeight}`);
+    </script>
+</body>
+</html> 
