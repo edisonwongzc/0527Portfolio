@@ -5,11 +5,10 @@ import Footer from './components/Footer';
 import GlobalCursor from './components/GlobalCursor';
 import ContactForm from './components/ContactForm';
 import ScrollToTop from './components/ScrollToTop';
+import StarfieldBackground from './components/StarfieldBackground';
 import Home from './pages/Home';
 import About from './pages/About';
-import ScrollDemo from './pages/ScrollDemo';
-import ScrollMagicDemo from './pages/ScrollMagicDemo';
-import ContentCustomizer from './pages/ContentCustomizer';
+import Resume from './pages/Resume';
 import Contact from './pages/Contact';
 import ProjectDetail from './pages/ProjectDetail';
 // import WorkDetail from './pages/WorkDetail';
@@ -76,6 +75,9 @@ const App = () => {
   return (
     <Router>
       <div className="min-h-screen bg-black">
+        {/* 星空背景 - 最底层 */}
+        <StarfieldBackground />
+        
         <ScrollToTop />
         <GlobalCursor />
         <Navbar 
@@ -87,9 +89,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/scroll-demo" element={<ScrollDemo />} />
-            <Route path="/scrollmagic-demo" element={<ScrollMagicDemo />} />
-            <Route path="/content-customizer" element={<ContentCustomizer />} />
+            <Route path="/resume" element={<Resume />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/project/:id" element={<ProjectDetail />} />
             {/* <Route path="/work/:id" element={<WorkDetail />} /> */}

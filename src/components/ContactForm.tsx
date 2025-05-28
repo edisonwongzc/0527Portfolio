@@ -168,7 +168,7 @@ const ContactForm = ({ isVisible, onClose, targetElement, triggerButtonRef }: Co
     }
     
     if (message.includes('contact') || message.includes('email') || message.includes('联系')) {
-      return 'You can reach Edison at hello@edisonwong.com 📧 He\'s always excited to discuss new projects and collaborations!';
+      return 'You can reach Edison at 18321445543@163.com 📧 He\'s always excited to discuss new projects and collaborations!';
     }
     
     if (message.includes('experience') || message.includes('background') || message.includes('经验')) {

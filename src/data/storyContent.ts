@@ -194,8 +194,8 @@ export const contentOptions = {
     yearsOfExperience: 8,
     projectCount: 100,
     clientSatisfaction: 95,
-    location: 'San Francisco',
-    email: 'hello@edisonwong.com'
+    location: 'Shanghai',
+    email: '18321445543@163.com'
   },
   
   // 品牌色彩主题

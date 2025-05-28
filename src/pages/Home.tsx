@@ -19,15 +19,15 @@ import ThreeHero from '../components/ThreeHero';
  */
 import PageTransition from '../components/PageTransition';
 /**
- * 导入测试组件
- * @module SimpleTest
+ * 导入星空引导转场组件
+ * @module StarGuidedTransition
  */
-import SimpleTest from '../components/SimpleTest';
+import StarGuidedTransition from '../components/StarGuidedTransition';
 /**
- * 导入极简测试组件
- * @module VerySimpleTest
+ * 导入滚动检测Hook
+ * @module useScrollDirection
  */
-import VerySimpleTest from '../components/VerySimpleTest';
+import { useScrollDirection } from '../hooks/useScrollDirection';
 /**
  * 导入图片配置
  * @module images
@@ -61,6 +61,16 @@ const Home = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [triggerElement, setTriggerElement] = useState<HTMLElement | null>(null);
   
+  // 星空引导转场状态
+  const { 
+    direction, 
+    shouldShowTransition, 
+    currentSection, 
+    nextSection 
+  } = useScrollDirection();
+  
+  const [starTransitionActive, setStarTransitionActive] = useState(false);
+  
   // About section交互状态
   const aboutSliderRef = useRef<HTMLDivElement>(null);
   const aboutSliderThumbRef = useRef<HTMLDivElement>(null);
@@ -74,6 +84,20 @@ const Home = () => {
   const aboutTargetText = "I'm a digital designer focused on creating thoughtful, experiences, that solve problems and tell stories.";
   const aboutTargetTextZh = "我是一名数字设计师，专注于创造深思熟虑的体验，解决问题并讲述故事。";
   const aboutWords = aboutTargetText.split(' ');
+
+  // 监听滚动转场触发
+  useEffect(() => {
+    if (shouldShowTransition && direction) {
+      setStarTransitionActive(true);
+    }
+  }, [shouldShowTransition, direction]);
+
+  /**
+   * 星空转场完成回调
+   */
+  const handleStarTransitionComplete = useCallback(() => {
+    setStarTransitionActive(false);
+  }, []);
 
   /**
    * 处理项目卡片点击
@@ -272,7 +296,7 @@ const Home = () => {
       title: 'Ai Explore and Research',
       category: 'Ai Explore',
       categoryZh: 'AI探索',
-      year: '2023',
+      year: '2017-2018',
       image: getProjectImage('03'), // AI产品体验
       description: 'Leveraging AI linking tools to create new era product experiences',
       descriptionZh: '利用AI链接工具，打造新时代的产品体验'
@@ -292,7 +316,7 @@ const Home = () => {
       title: 'System specification Design',
       category: 'System Design',
       categoryZh: '系统设计',
-      year: '2023',
+      year: '2017-2018',
       image: getProjectImage('05'), // 系统规范设计
       description: 'Enhancing team efficiency and reducing costs with unified standards',
       descriptionZh: '为团队增效降本，统一标准'
@@ -774,7 +798,7 @@ const Home = () => {
       <ThreeHero />
 
       {/* 精选作品 - qclay.design 风格 */}
-      <SectionContainer ref={projectsRef} variant="projects" id="projects">
+      <SectionContainer ref={projectsRef} variant="projects" id="projects" data-section="projects">
         <SectionTitle
           ref={projectsTitleRef}
           title="Selected Work"
@@ -870,7 +894,7 @@ const Home = () => {
       </SectionContainer>
 
       {/* 创意服务区域 - 复制"Let's create"的设计和动画 */}
-      <SectionContainer ref={servicesRef} variant="services" id="services">
+      <SectionContainer ref={servicesRef} variant="services" id="services" data-section="services">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-20">
             {/* 主要内容 - 复制footer的布局 */}
             <div className="lg:col-span-2 space-y-8">
@@ -887,14 +911,6 @@ const Home = () => {
                 <span className="text-base text-gray-600">从概念到完成，我提供全面的设计解决方案，帮助品牌与受众建立联系并实现目标。</span>
               </p>
             </div>
-              
-              <Link
-                to="/about"
-                className="inline-flex items-center text-white border border-gray-700 hover:border-gray-500 px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/5 group"
-              >
-                View all services
-                <ArrowUpRight size={16} className="ml-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-              </Link>
             </div>
 
             {/* 服务展示卡片 */}
@@ -1096,7 +1112,7 @@ const Home = () => {
       </SectionContainer>
 
       {/* 联系区域 - qclay.design 风格 */}
-      <SectionContainer ref={contactRef} variant="contact" id="contact">
+      <SectionContainer ref={contactRef} variant="contact" id="contact" data-section="contact">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-6 space-y-8">
               <h2 className="text-5xl md:text-7xl font-light text-white leading-tight">
@@ -1171,6 +1187,13 @@ const Home = () => {
         isActive={isTransitioning}
         triggerElement={triggerElement}
         onComplete={handleTransitionComplete}
+      />
+      
+      {/* 星空引导转场 */}
+      <StarGuidedTransition
+        isActive={starTransitionActive}
+        direction={direction || 'down'}
+        onComplete={handleStarTransitionComplete}
       />
     </div>
   );
