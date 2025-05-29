@@ -66,7 +66,7 @@ export const useScrollDirection = (): ScrollDirectionHook => {
       setNextSection(nextSectionId);
 
       // 检测是否接近模块边界
-      const threshold = window.innerHeight * 0.1; // 10%的视口高度
+      const threshold = window.innerHeight * 0.2; // 增加到20%的视口高度，更容易触发
       let atBoundary = false;
       
       for (const section of sections) {
@@ -87,22 +87,22 @@ export const useScrollDirection = (): ScrollDirectionHook => {
 
       setIsAtSectionBoundary(atBoundary);
 
-      // 触发转场效果的条件
+      // 触发转场效果的条件 - 降低触发门槛
       const shouldTrigger = 
         atBoundary && 
         nextSectionId && 
         !transitionCooldown.current &&
-        Math.abs(currentScrollY - lastScrollY.current) > 5; // 确保有足够的滚动距离
+        Math.abs(currentScrollY - lastScrollY.current) > 2; // 降低滚动距离要求
 
       if (shouldTrigger) {
         setShouldShowTransition(true);
         transitionCooldown.current = true;
         
-        // 3秒冷却时间
+        // 2秒冷却时间，缩短冷却时间
         setTimeout(() => {
           transitionCooldown.current = false;
           setShouldShowTransition(false);
-        }, 3000);
+        }, 2000);
       }
     };
 

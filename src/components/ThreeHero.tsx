@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
+import SpaceWarpBackground from './SpaceWarpBackground';
 
 /**
  * 主要的3D Hero组件
@@ -255,6 +256,9 @@ const ThreeHero = () => {
           zIndex: 1
         }}
       >
+        {/* 时空穿越粒子背景 - 最底层 */}
+        <SpaceWarpBackground />
+        
       {/* CSS光束背景 - 温暖大地色调线性渐变 */}
       <div className="absolute inset-0" style={{ zIndex: 2, transformStyle: 'preserve-3d' }}>
         {/* 主光束 - 椭圆形锥形渐变，中心上移且更亮 */}

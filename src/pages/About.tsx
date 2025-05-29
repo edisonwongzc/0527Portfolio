@@ -1,21 +1,31 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import FlowingLinesBackground from '../components/FlowingLinesBackground';
 
 const About = () => {
+  console.log('About page rendered'); // 调试信息
+  
   return (
-    <div className="min-h-screen bg-black text-white">
-      <section className="px-6 lg:px-12 py-32">
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      {/* 流光线条动态背景 - 覆盖整个首屏 */}
+      <div className="fixed inset-0 w-screen h-screen z-0">
+        <FlowingLinesBackground />
+      </div>
+      
+      <section className="px-6 lg:px-12 py-32 relative z-20">
         <div className="max-w-6xl mx-auto">
           {/* 标题区域 - 左对齐 */}
-          <div className="mb-16">
-            <h1 className="text-6xl md:text-8xl lg:text-[8rem] font-extralight text-white leading-none tracking-tighter mb-8 text-left">
-              About Me
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-400 leading-relaxed max-w-3xl">
-              Experience Creative Designer specializing in cockpit experience design and digital product design.
-              <br />
-              <span className="text-lg text-gray-500 mt-2 block">专注于座舱体验设计和数字产品设计的体验创意设计师。</span>
-            </p>
+          <div className="mb-16 relative">
+            <div className="relative z-10">
+              <h1 className="text-6xl md:text-8xl lg:text-[8rem] font-extralight text-white leading-none tracking-tighter mb-8 text-left">
+                About Me
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-400 leading-relaxed max-w-3xl">
+                Experience Creative Designer specializing in cockpit experience design and digital product design.
+                <br />
+                <span className="text-lg text-gray-500 mt-2 block">专注于座舱体验设计和数字产品设计的体验创意设计师。</span>
+              </p>
+            </div>
           </div>
 
           {/* 职业概述 */}
@@ -257,7 +267,13 @@ const About = () => {
                       'Conceptual Innovation Design', 
                       'Intelligent Cockpit Product Design'
                     ].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-gray-900 border border-gray-700 rounded-full text-sm text-gray-300">
+                      <span 
+                        key={skill} 
+                        className="px-3 py-1 bg-gray-900 border border-gray-700 rounded-full text-sm text-gray-300 
+                                 hover:bg-gray-800 hover:border-gray-600 hover:text-white hover:scale-105 
+                                 transition-all duration-300 ease-out cursor-pointer
+                                 hover:shadow-lg hover:shadow-gray-700/50"
+                      >
                         {skill}
                       </span>
                     ))}
@@ -272,7 +288,13 @@ const About = () => {
                       'Product Strategy Design', 
                       'Design System Development'
                     ].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-gray-900 border border-gray-700 rounded-full text-sm text-gray-300">
+                      <span 
+                        key={skill} 
+                        className="px-3 py-1 bg-gray-900 border border-gray-700 rounded-full text-sm text-gray-300
+                                 hover:bg-gray-800 hover:border-gray-600 hover:text-white hover:scale-105 
+                                 transition-all duration-300 ease-out cursor-pointer
+                                 hover:shadow-lg hover:shadow-gray-700/50"
+                      >
                         {skill}
                       </span>
                     ))}
@@ -286,7 +308,13 @@ const About = () => {
                       'User Research & Data Analysis', 
                       'AI Exploration & Application'
                     ].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-gray-900 border border-gray-700 rounded-full text-sm text-gray-300">
+                      <span 
+                        key={skill} 
+                        className="px-3 py-1 bg-gray-900 border border-gray-700 rounded-full text-sm text-gray-300
+                                 hover:bg-gray-800 hover:border-gray-600 hover:text-white hover:scale-105 
+                                 transition-all duration-300 ease-out cursor-pointer
+                                 hover:shadow-lg hover:shadow-gray-700/50"
+                      >
                         {skill}
                       </span>
                     ))}
@@ -308,12 +336,12 @@ const About = () => {
                   <div className="lg:col-span-2">
                     <h3 className="text-lg font-light text-white mb-2">University of Sunderland</h3>
                     <p className="text-base text-gray-300 mb-2">Master of Arts in Design</p>
-                    <p className="text-sm text-gray-500">英国桑德兰大学 设计学硕士</p>
+                    <p className="text-sm text-gray-500">英国桑德兰大学 硕士</p>
                   </div>
                   <div className="lg:col-span-1">
                   </div>
                   <div className="lg:col-span-1">
-                    <p className="text-sm text-gray-400">United Kingdom</p>
+                    <p className="text-sm text-gray-400">Shanghai</p>
                   </div>
                 </div>
               </div>

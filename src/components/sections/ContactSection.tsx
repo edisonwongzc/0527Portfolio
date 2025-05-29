@@ -35,10 +35,10 @@ const ContactSection = forwardRef<HTMLDivElement, ContactSectionProps>(
                 <span className="text-base text-gray-500">联系方式</span>
               </h3>
               <a 
-                href="mailto:hello@edisonwong.com"
+                href="mailto:18321445543@163.com"
                 className="text-gray-400 hover:text-white transition-colors duration-300 text-lg"
               >
-                hello@edisonwong.com
+                18321445543@163.com
               </a>
             </div>
             

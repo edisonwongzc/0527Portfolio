@@ -98,18 +98,18 @@ const GuidingStars = ({ isActive, direction, onComplete }: {
         child.position.y = THREE.MathUtils.lerp(star.position[1], star.targetPosition[1], progress);
         child.position.z = THREE.MathUtils.lerp(star.position[2], star.targetPosition[2], progress);
         
-        // 淡入淡出效果
+        // 增强淡入淡出效果
         const opacity = progress < 0.1 ? progress * 10 : 
                        progress > 0.8 ? (1 - progress) * 5 : 1;
         
         (child as THREE.Mesh).material = new THREE.MeshBasicMaterial({
           color: new THREE.Color(0.3 + progress * 0.7, 0.8, 1.0), // 蓝白渐变
           transparent: true,
-          opacity: opacity * 0.8
+          opacity: opacity * 1.0 // 增强透明度
         });
         
-        // 大小变化
-        child.scale.setScalar(0.5 + progress * 1.5);
+        // 增大星星尺寸
+        child.scale.setScalar(1.0 + progress * 2.0);
       }
     });
 
@@ -125,11 +125,11 @@ const GuidingStars = ({ isActive, direction, onComplete }: {
     <group ref={groupRef}>
       {stars.map((_, index) => (
         <mesh key={index}>
-          <sphereGeometry args={[0.1, 8, 8]} />
+          <sphereGeometry args={[0.2, 8, 8]} /> {/* 增大基础尺寸 */}
           <meshBasicMaterial 
             color={0x4FC3F7} 
             transparent 
-            opacity={0.8}
+            opacity={1.0} // 增强初始透明度
           />
         </mesh>
       ))}
@@ -188,9 +188,10 @@ const StarGuidedTransition: React.FC<StarGuidedTransitionProps> = ({
         left: 0,
         width: '100vw',
         height: '100vh',
-        zIndex: 10, // 在星空背景之上，但在导航栏之下
+        zIndex: 50, // 大幅提高z-index，确保在所有内容之上
         pointerEvents: 'none',
-        opacity: 0
+        opacity: 0,
+        background: 'rgba(0, 0, 0, 0.1)' // 添加轻微背景，增强可见性
       }}
     >
       <Canvas
@@ -203,7 +204,7 @@ const StarGuidedTransition: React.FC<StarGuidedTransitionProps> = ({
         style={{ background: 'transparent' }}
       >
         {/* 环境光 */}
-        <ambientLight intensity={0.2} />
+        <ambientLight intensity={0.3} />
         
         {/* 引导星星 */}
         <GuidingStars 
@@ -215,7 +216,7 @@ const StarGuidedTransition: React.FC<StarGuidedTransitionProps> = ({
         {/* 点光源增强效果 */}
         <pointLight 
           position={[0, direction === 'down' ? -50 : 50, 50]} 
-          intensity={0.5} 
+          intensity={1.0} 
           color={0x4FC3F7}
           distance={200}
         />
@@ -230,17 +231,21 @@ const StarGuidedTransition: React.FC<StarGuidedTransitionProps> = ({
           left: '50%',
           transform: 'translateX(-50%)',
           color: '#4FC3F7',
-          fontSize: '14px',
-          fontWeight: '300',
+          fontSize: '16px', // 增大字体
+          fontWeight: '400', // 增加字重
           textAlign: 'center',
-          textShadow: '0 0 10px rgba(79, 195, 247, 0.5)',
-          animation: 'pulse 2s ease-in-out infinite'
+          textShadow: '0 0 15px rgba(79, 195, 247, 0.8)', // 增强发光效果
+          animation: 'pulse 2s ease-in-out infinite',
+          background: 'rgba(0, 0, 0, 0.3)', // 添加背景
+          padding: '12px 24px',
+          borderRadius: '25px',
+          backdropFilter: 'blur(10px)'
         }}
       >
         <div style={{ marginBottom: '8px' }}>
           {direction === 'down' ? 'Continue exploring' : 'Back to top'}
         </div>
-        <div style={{ fontSize: '12px', opacity: 0.7 }}>
+        <div style={{ fontSize: '14px', opacity: 0.8 }}>
           {direction === 'down' ? '继续探索' : '返回顶部'}
         </div>
       </div>

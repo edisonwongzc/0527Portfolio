@@ -340,7 +340,7 @@ const Home = () => {
         opacity: 0.95 // 提高初始透明度
       });
 
-      // Hero区域退出效果 - 光标保护
+      // Hero区域退出效果 - 增强模糊效果
       ScrollTrigger.create({
         trigger: projectsRef.current,
         start: "top 100%",
@@ -353,15 +353,17 @@ const Home = () => {
           if (heroElement) {
             gsap.to(heroElement, {
               y: progress * -50,
-              scale: 1 - progress * 0.08, // 减少缩放幅度
-              opacity: 1 - progress * 0.25, // 减少淡出程度
-              duration: 0.1
+              scale: 1 - progress * 0.08,
+              opacity: 1 - progress * 0.25,
+              filter: `blur(${progress * 18}px) brightness(${1 - progress * 0.4}) contrast(${1 - progress * 0.2})`, // 增强模糊和亮度变化
+              duration: 0.1,
+              ease: "none"
             });
           }
         }
       });
 
-      // 3D Hero到项目区域的转场效果 - 优化光标兼容性
+      // 3D Hero到项目区域的转场效果 - 增强模糊效果
       ScrollTrigger.create({
         trigger: projectsRef.current,
         start: "top 120%",
@@ -370,14 +372,15 @@ const Home = () => {
         onUpdate: (self) => {
           const progress = self.progress;
           
-          // 项目区域进入效果 - 大幅减少滤镜强度
+          // 项目区域进入效果 - 增强模糊效果
           gsap.to(projectsRef.current, {
-            filter: `blur(${(1 - progress) * 0.5}px)`, // 大幅减少模糊程度
-            rotationX: (1 - progress) * 2, // 大幅减少旋转角度
-            z: (1 - progress) * -10, // 大幅减少Z轴偏移
-            scale: 0.99 + progress * 0.01, // 大幅减少缩放变化
-            opacity: 0.95 + progress * 0.05, // 调整透明度范围
-            duration: 0.1
+            filter: `blur(${(1 - progress) * 22}px) brightness(${0.6 + progress * 0.4}) contrast(${0.8 + progress * 0.2})`, // 大幅增强模糊效果
+            rotationX: (1 - progress) * 12, // 增加旋转角度
+            z: (1 - progress) * -40, // 增加Z轴偏移
+            scale: 0.92 + progress * 0.08, // 增加缩放变化
+            opacity: 0.7 + progress * 0.3, // 调整透明度范围
+            duration: 0.1,
+            ease: "none"
           });
         }
       });
@@ -625,7 +628,7 @@ const Home = () => {
         });
       });
 
-      // 项目区域到服务区域的转场 - 光标保护优化
+      // 项目区域到服务区域的转场 - 增强模糊效果
       ScrollTrigger.create({
         trigger: servicesRef.current,
         start: "top 100%",
@@ -634,22 +637,26 @@ const Home = () => {
         onUpdate: (self) => {
           const progress = self.progress;
           
-          // 项目区域下落效果 - 大幅减少滤镜强度
+          // 项目区域下落效果 - 增强模糊效果
           gsap.to(projectsRef.current, {
-            filter: `blur(${progress * 1}px)`, // 大幅减少模糊程度
-            rotationX: progress * 5, // 大幅减少旋转角度
-            y: progress * 30, // 大幅减少位移
-            scale: 1 - progress * 0.05, // 大幅减少缩放
-            duration: 0.1
+            filter: `blur(${progress * 20}px) brightness(${1 - progress * 0.5}) contrast(${1 - progress * 0.3})`, // 大幅增强模糊效果
+            rotationX: progress * 20, // 增加旋转角度
+            y: progress * 80, // 增加位移
+            scale: 1 - progress * 0.15, // 增加缩放
+            opacity: 1 - progress * 0.4, // 增加透明度变化
+            duration: 0.1,
+            ease: "none"
           });
 
-          // 服务区域进入效果 - 大幅减少滤镜强度
+          // 服务区域进入效果 - 增强模糊效果
           gsap.to(servicesRef.current, {
-            filter: `blur(${(1 - progress) * 1}px)`, // 大幅减少模糊程度
-            rotationX: (1 - progress) * -8, // 大幅减少旋转角度
-            y: (1 - progress) * -20, // 大幅减少位移
-            scale: 0.98 + progress * 0.02, // 大幅减少缩放变化
-            duration: 0.1
+            filter: `blur(${(1 - progress) * 25}px) brightness(${0.5 + progress * 0.5}) contrast(${0.7 + progress * 0.3})`, // 大幅增强模糊效果
+            rotationX: (1 - progress) * -20, // 增加旋转角度
+            y: (1 - progress) * -60, // 增加位移
+            scale: 0.9 + progress * 0.1, // 增加缩放变化
+            opacity: 0.6 + progress * 0.4, // 调整透明度
+            duration: 0.1,
+            ease: "none"
           });
         }
       });
@@ -679,7 +686,7 @@ const Home = () => {
         }
       );
 
-      // 服务区域到联系区域的转场 - 光标保护优化
+      // 服务区域到联系区域的转场 - 增强模糊效果
       ScrollTrigger.create({
         trigger: contactRef.current,
         start: "top 100%",
@@ -688,22 +695,26 @@ const Home = () => {
         onUpdate: (self) => {
           const progress = self.progress;
           
-          // 服务区域退出效果 - 大幅减少滤镜强度
+          // 服务区域退出效果 - 增强模糊效果
           gsap.to(servicesRef.current, {
-            filter: `blur(${progress * 1}px)`, // 大幅减少模糊程度
-            rotationY: progress * -5, // 大幅减少旋转角度
-            x: progress * -20, // 大幅减少位移
-            scale: 1 - progress * 0.05, // 大幅减少缩放
-            duration: 0.1
+            filter: `blur(${progress * 16}px) brightness(${1 - progress * 0.4}) contrast(${1 - progress * 0.2})`, // 增强模糊效果
+            rotationY: progress * -15, // 增加旋转角度
+            x: progress * -50, // 增加位移
+            scale: 1 - progress * 0.12, // 增加缩放
+            opacity: 1 - progress * 0.35, // 增加透明度变化
+            duration: 0.1,
+            ease: "none"
           });
 
-          // 联系区域进入效果 - 大幅减少滤镜强度
+          // 联系区域进入效果 - 增强模糊效果
           gsap.to(contactRef.current, {
-            filter: `blur(${(1 - progress) * 1}px)`, // 大幅减少模糊程度
-            rotationY: (1 - progress) * 8, // 大幅减少旋转角度
-            x: (1 - progress) * 25, // 大幅减少位移
-            scale: 0.97 + progress * 0.03, // 大幅减少缩放变化
-            duration: 0.1
+            filter: `blur(${(1 - progress) * 18}px) brightness(${0.6 + progress * 0.4}) contrast(${0.8 + progress * 0.2})`, // 增强模糊效果
+            rotationY: (1 - progress) * 18, // 增加旋转角度
+            x: (1 - progress) * 60, // 增加位移
+            scale: 0.88 + progress * 0.12, // 增加缩放变化
+            opacity: 0.65 + progress * 0.35, // 调整透明度
+            duration: 0.1,
+            ease: "none"
           });
         }
       });
@@ -798,7 +809,7 @@ const Home = () => {
       <ThreeHero />
 
       {/* 精选作品 - qclay.design 风格 */}
-      <SectionContainer ref={projectsRef} variant="projects" id="projects" data-section="projects">
+      <SectionContainer ref={projectsRef} variant="projects" id="projects" data-section="projects" className="section-transition blur-transition gpu-blur">
         <SectionTitle
           ref={projectsTitleRef}
           title="Selected Work"
@@ -894,7 +905,7 @@ const Home = () => {
       </SectionContainer>
 
       {/* 创意服务区域 - 复制"Let's create"的设计和动画 */}
-      <SectionContainer ref={servicesRef} variant="services" id="services" data-section="services">
+      <SectionContainer ref={servicesRef} variant="services" id="services" data-section="services" className="section-transition blur-transition gpu-blur">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-20">
             {/* 主要内容 - 复制footer的布局 */}
             <div className="lg:col-span-2 space-y-8">
@@ -1081,7 +1092,7 @@ const Home = () => {
       </SectionContainer>
 
       {/* 联系区域 - qclay.design 风格 */}
-      <SectionContainer ref={contactRef} variant="contact" id="contact" data-section="contact">
+      <SectionContainer ref={contactRef} variant="contact" id="contact" data-section="contact" className="section-transition blur-transition gpu-blur">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-6 space-y-8">
               <h2 className="text-5xl md:text-7xl font-light text-white leading-tight">
@@ -1105,10 +1116,10 @@ const Home = () => {
                   <span className="text-base text-gray-500">联系方式</span>
                 </h3>
                 <a 
-                  href="mailto:hello@edisonwong.com"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 text-lg"
+                  href="mailto:18321445543@163.com"
+                  className="text-white hover:text-gray-300 transition-colors duration-300 text-lg"
                 >
-                  hello@edisonwong.com
+                  18321445543@163.com
                 </a>
               </div>
               

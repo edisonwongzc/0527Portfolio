@@ -134,9 +134,31 @@ section {
   transform-style: preserve-3d;
   /* 移除backface-visibility: hidden，避免隐藏光标 */
   /* backface-visibility: hidden; */
-  will-change: transform; /* 简化will-change，避免过度影响层叠上下文 */
+  will-change: transform, filter, opacity; /* 添加filter和opacity到will-change */
   /* 确保不会创建新的层叠上下文覆盖光标 */
   position: relative;
+}
+
+/* 模糊转场效果支持 */
+.section-transition {
+  will-change: transform, filter, opacity, scale;
+  transform-style: preserve-3d;
+  transition: filter 0.1s ease-out, transform 0.1s ease-out, opacity 0.1s ease-out;
+}
+
+/* 确保filter属性正常工作 */
+.blur-transition {
+  filter: blur(0px) brightness(1) contrast(1);
+  transition: filter 0.1s linear;
+}
+
+/* 强制GPU加速模糊效果 */
+.gpu-blur {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: filter, transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* 全局统一光标 - 原始样式 */
@@ -865,4 +887,25 @@ nav button,
 ::selection {
   background-color: rgba(79, 195, 247, 0.3);
   color: #ffffff;
+}
+
+/* 设计思维页面模糊动画支持 */
+.content-section {
+  will-change: transform, filter, opacity;
+}
+
+.content-section * {
+  will-change: transform, filter, opacity;
+}
+
+/* GPU加速优化 */
+.content-section {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* 模糊效果优化 */
+.content-section [style*="blur"] {
+  will-change: filter;
+  transform: translateZ(0);
 }

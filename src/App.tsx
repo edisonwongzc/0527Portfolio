@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import GlobalCursor from './components/GlobalCursor';
 import ContactForm from './components/ContactForm';
 import ScrollToTop from './components/ScrollToTop';
-import StarfieldBackground from './components/StarfieldBackground';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -75,9 +74,6 @@ const App = () => {
   return (
     <Router>
       <div className="min-h-screen">
-        {/* 星空背景 - 最底层 */}
-        <StarfieldBackground />
-        
         <ScrollToTop />
         <GlobalCursor />
         <Navbar 

@@ -9,8 +9,8 @@ export const designThinkingImages = {
   beforeInterface: '/images/design-thinking/before-interface.jpg',
   afterInterface: '/images/design-thinking/after-interface.jpg',
   
-  // 未来设计趋势
-  futureDesign: '/images/design-thinking/future-trends.jpg',
+  // 未来设计趋势 - 视频文件
+  futureDesign: '/videos/design-thinking/future-trends.mp4',
   
   // 用户研究过程
   userResearchProcess: '/images/design-thinking/user-research.jpg',
