@@ -68,10 +68,6 @@ export const serviceImages = {
   designThinking: getImagePath(
     '/images/service-design-thinking.jpg',
     'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&h=450&fit=crop&crop=center'
-  ),
-  userResearch: getImagePath(
-    '/images/service-user-research.jpg',
-    'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=450&fit=crop&crop=center'
   )
 };
 

@@ -8,9 +8,9 @@ import ScrollToTop from './components/ScrollToTop';
 import StarfieldBackground from './components/StarfieldBackground';
 import Home from './pages/Home';
 import About from './pages/About';
-import Resume from './pages/Resume';
 import Contact from './pages/Contact';
 import ProjectDetail from './pages/ProjectDetail';
+import DesignThinking from './pages/DesignThinking';
 // import WorkDetail from './pages/WorkDetail';
 
 const App = () => {
@@ -89,9 +89,9 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/resume" element={<Resume />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/project/:id" element={<ProjectDetail />} />
+            <Route path="/design-thinking" element={<DesignThinking />} />
             {/* <Route path="/work/:id" element={<WorkDetail />} /> */}
           </Routes>
         </main>

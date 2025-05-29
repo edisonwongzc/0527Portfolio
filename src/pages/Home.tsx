@@ -915,85 +915,47 @@ const Home = () => {
 
             {/* 服务展示卡片 */}
             <div className="space-y-8">
-              {/* 服务卡片1 */}
-              <div className="service-card group cursor-pointer">
-                <div className="relative aspect-[4/3] overflow-hidden bg-black rounded-2xl mb-4">
-                  <img
-                    src={serviceImages.designThinking}
-                    alt="Design Thinking Exploration"
-                    className="service-image w-full h-full will-change-transform absolute inset-0"
-                    style={{ 
-                      objectFit: 'cover',
-                      objectPosition: 'center center',
-                      width: '100%',
-                      height: '100%',
-                      transform: 'scale(1.0)', // 初始状态显示完整图片
-                      transformOrigin: 'center center'
-                    }}
-                  />
-                  <div className="service-overlay absolute inset-0 bg-black/30 opacity-0 will-change-opacity"></div>
-                  
-                  {/* 服务图标 */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                      <ArrowUpRight size={14} className="text-white" />
+              {/* 服务卡片1 - Design Thinking Exploration */}
+              <Link to="/design-thinking" className="block">
+                <div className="service-card group cursor-pointer">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-black rounded-2xl mb-4">
+                    <img
+                      src={serviceImages.designThinking}
+                      alt="Design Thinking Exploration"
+                      className="service-image w-full h-full will-change-transform absolute inset-0"
+                      style={{ 
+                        objectFit: 'cover',
+                        objectPosition: 'center center',
+                        width: '100%',
+                        height: '100%',
+                        transform: 'scale(1.0)', // 初始状态显示完整图片
+                        transformOrigin: 'center center'
+                      }}
+                    />
+                    <div className="service-overlay absolute inset-0 bg-black/30 opacity-0 will-change-opacity"></div>
+                    
+                    {/* 服务图标 */}
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                        <ArrowUpRight size={14} className="text-white" />
+                      </div>
                     </div>
                   </div>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-light text-white mb-2 group-hover:text-gray-300 transition-colors duration-300">
-                    Design Thinking Exploration
-                    <br />
-                    <span className="text-base text-gray-500">设计思路探索</span>
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    Exploring innovative design methodologies and creative problem-solving approaches.
-                    <br />
-                    <span className="text-xs text-gray-600">探索创新设计方法论和创意问题解决途径。</span>
-                  </p>
-                </div>
-              </div>
-
-              {/* 服务卡片2 */}
-              <div className="service-card group cursor-pointer">
-                <div className="relative aspect-[4/3] overflow-hidden bg-black rounded-2xl mb-4">
-                  <img
-                    src={serviceImages.userResearch}
-                    alt="User Research"
-                    className="service-image w-full h-full will-change-transform absolute inset-0"
-                    style={{ 
-                      objectFit: 'cover',
-                      objectPosition: 'center center',
-                      width: '100%',
-                      height: '100%',
-                      transform: 'scale(1.0)', // 初始状态显示完整图片
-                      transformOrigin: 'center center'
-                    }}
-                  />
-                  <div className="service-overlay absolute inset-0 bg-black/30 opacity-0 will-change-opacity"></div>
                   
-                  {/* 服务图标 */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                      <ArrowUpRight size={14} className="text-white" />
-                    </div>
+                  <div>
+                    <h3 className="text-lg font-light text-white mb-2 group-hover:text-gray-300 transition-colors duration-300">
+                      Design Thinking Exploration
+                      <br />
+                      <span className="text-base text-gray-500">设计思路探索</span>
+                    </h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">
+                      Exploring innovative design methodologies and creative problem-solving approaches.
+                      <br />
+                      <span className="text-xs text-gray-600">探索创新设计方法论和创意问题解决途径。</span>
+                    </p>
                   </div>
                 </div>
-
-                <div>
-                  <h3 className="text-lg font-light text-white mb-2 group-hover:text-gray-300 transition-colors duration-300">
-                    User Research
-                    <br />
-                    <span className="text-base text-gray-500">用户研究</span>
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    Deep insights into user behavior and needs through comprehensive research methods.
-                    <br />
-                    <span className="text-xs text-gray-600">通过全面的研究方法深入洞察用户行为和需求。</span>
-                  </p>
-                </div>
-              </div>
+              </Link>
             </div>
           </div>
       </SectionContainer>
@@ -1002,11 +964,18 @@ const Home = () => {
       <SectionContainer variant="about" id="about">
           {/* 主标题 */}
           <div className="mb-20">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight mb-12">
-              About
-              <br />
-              <span className="text-3xl md:text-4xl lg:text-5xl text-gray-500">关于</span>
-            </h2>
+            <Link to="/about" className="group inline-block">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight mb-12 group-hover:text-gray-300 transition-colors duration-300 cursor-pointer">
+                About
+                <br />
+                <span className="text-3xl md:text-4xl lg:text-5xl text-gray-500 group-hover:text-gray-400 transition-colors duration-300">关于</span>
+                {/* 悬停箭头图标 */}
+                <ArrowUpRight 
+                  size={24} 
+                  className="inline-block ml-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 text-gray-400" 
+                />
+              </h2>
+            </Link>
           </div>
 
           {/* 交互式文字区域 */}
