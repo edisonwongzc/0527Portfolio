@@ -793,7 +793,7 @@ const Home = () => {
 
 
   return (
-    <div className="min-h-screen bg-black overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden">
       {/* 3D Hero区域 */}
       <ThreeHero />
 

@@ -46,12 +46,33 @@ const Stars = () => {
   // 根据性能调整星星数量
   const starCount = useMemo(() => {
     switch (performance) {
-      case 'high': return 3000;
-      case 'medium': return 2000;
-      case 'low': return 1000;
-      default: return 2000;
+      case 'high': return 5000;
+      case 'medium': return 3000;
+      case 'low': return 2000;
+      default: return 3000;
     }
   }, [performance]);
+  
+  // 创建星星纹理
+  const starTexture = useMemo(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 32;
+    canvas.height = 32;
+    const ctx = canvas.getContext('2d')!;
+    
+    // 创建径向渐变
+    const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+    gradient.addColorStop(0, 'rgba(255,255,255,1)');
+    gradient.addColorStop(0.2, 'rgba(255,255,255,0.8)');
+    gradient.addColorStop(0.4, 'rgba(255,255,255,0.4)');
+    gradient.addColorStop(1, 'rgba(255,255,255,0)');
+    
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 32, 32);
+    
+    const texture = new THREE.CanvasTexture(canvas);
+    return texture;
+  }, []);
   
   // 生成随机星星位置
   const [positions, colors] = useMemo(() => {
@@ -81,7 +102,7 @@ const Stars = () => {
   // 动画：缓慢旋转
   useFrame((state) => {
     if (meshRef.current) {
-      const speed = performance === 'low' ? 0.00005 : 0.0001;
+      const speed = performance === 'low' ? 0.0001 : 0.0002;
       meshRef.current.rotation.x = state.clock.elapsedTime * speed;
       meshRef.current.rotation.y = state.clock.elapsedTime * speed * 2;
     }
@@ -106,12 +127,14 @@ const Stars = () => {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={performance === 'low' ? 0.6 : 0.8}
+        size={performance === 'low' ? 0.3 : 0.4}
         sizeAttenuation={true}
         vertexColors={true}
         transparent={true}
         opacity={performance === 'low' ? 0.6 : 0.8}
         blending={THREE.AdditiveBlending}
+        map={starTexture}
+        alphaTest={0.01}
       />
     </points>
   );
@@ -199,9 +222,9 @@ const StarfieldBackground: React.FC = () => {
         top: 0,
         left: 0,
         width: '100vw',
-        height: '100vh',
-        zIndex: -1, // 确保在最底层
-        pointerEvents: 'none' // 不影响鼠标事件
+        height: '100%',
+        zIndex: -1,
+        pointerEvents: 'none',
       }}
     >
       <Canvas
@@ -232,4 +255,4 @@ const StarfieldBackground: React.FC = () => {
   );
 };
 
-export default StarfieldBackground; 
+export default StarfieldBackground;

@@ -74,7 +74,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className="min-h-screen bg-black">
+      <div className="min-h-screen">
         {/* 星空背景 - 最底层 */}
         <StarfieldBackground />
         
