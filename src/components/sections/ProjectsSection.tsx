@@ -243,7 +243,7 @@ const ProjectsSection = forwardRef<HTMLDivElement, ProjectsSectionProps>(
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="project-image w-full h-full will-change-transform absolute inset-0"
+                    className="project-image w-full h-full will-change-transform absolute inset-0 rounded-2xl"
                     style={{ 
                       objectFit: 'cover',
                       objectPosition: 'center center',
