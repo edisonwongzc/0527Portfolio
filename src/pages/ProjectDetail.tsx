@@ -322,6 +322,14 @@ const ProjectDetail = () => {
     return () => ctx.revert();
   }, [project]);
 
+  // 弹窗打开时滚动到顶部
+  useEffect(() => {
+    if (isGalleryModalOpen || isVideoModalOpen || isShowcaseModalOpen) {
+      // 滚动到顶部
+      window.scrollTo(0, 0);
+    }
+  }, [isGalleryModalOpen, isVideoModalOpen, isShowcaseModalOpen]);
+
   if (!project) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
@@ -551,53 +559,62 @@ const ProjectDetail = () => {
           className="fixed inset-0 bg-black/95 z-50"
           onClick={() => setIsVideoModalOpen(false)}
         >
-          {/* 关闭按钮 - 独立定位，不受padding影响 */}
-          <button
-            onClick={() => setIsVideoModalOpen(false)}
-            className="fixed top-6 right-6 z-50 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-300"
-          >
-            <X size={24} />
-          </button>
-          
-          {/* 视频播放区域 - 第一屏居中 */}
+          {/* 视频播放区域 - 顶部对齐 */}
           <div 
-            className="w-full h-screen flex items-center justify-center"
+            className="w-full h-screen flex justify-center items-start"
             style={{
               paddingLeft: '60px',
               paddingRight: '60px',
               paddingTop: '80px',
-              paddingBottom: '80px'
+              paddingBottom: '120px'
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <video
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-              controls
-              autoPlay
-              poster={project.id === '01' ? "/images/projects/01/video-poster.jpg" : "/images/projects/03/video-poster.jpg"}
-            >
-              {project.id === '01' ? (
-                <>
-                  <source src="/videos/projects/01/Hozon Framedesign 2.mp4" type="video/mp4" />
-                  <source src="/videos/hmi-demo.webm" type="video/webm" />
-                </>
-              ) : (
-                <>
-                  <source src="/videos/projects/03/ai-explore-demo.mp4" type="video/mp4" />
-                  <source src="/videos/ai-explore-demo.webm" type="video/webm" />
-                </>
-              )}
-              {/* 如果没有视频文件，显示占位内容 */}
-              <div className="flex flex-col items-center justify-center h-full text-white">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" className="mb-4 text-gray-400">
-                  <path d="M8 5v14l11-7z" fill="currentColor"/>
-                </svg>
-                <p className="text-lg mb-2">
-                  {project.id === '01' ? 'HMI Design Demo Video' : 'AI Explore Demo Video'}
-                </p>
-                <p className="text-sm text-gray-400">演示视频加载中...</p>
+            <div className="relative flex flex-col items-center max-w-full max-h-full">
+              <video
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                controls
+                autoPlay
+                poster={project.id === '01' ? "/images/projects/01/video-poster.jpg" : "/images/projects/03/video-poster.jpg"}
+              >
+                {project.id === '01' ? (
+                  <>
+                    <source src="/videos/projects/01/Hozon Framedesign 2.mp4" type="video/mp4" />
+                    <source src="/videos/hmi-demo.webm" type="video/webm" />
+                  </>
+                ) : (
+                  <>
+                    <source src="/videos/projects/03/ai-explore-demo.mp4" type="video/mp4" />
+                    <source src="/videos/ai-explore-demo.webm" type="video/webm" />
+                  </>
+                )}
+                {/* 如果没有视频文件，显示占位内容 */}
+                <div className="flex flex-col items-center justify-center h-full text-white">
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" className="mb-4 text-gray-400">
+                    <path d="M8 5v14l11-7z" fill="currentColor"/>
+                  </svg>
+                  <p className="text-lg mb-2">
+                    {project.id === '01' ? 'HMI Design Demo Video' : 'AI Explore Demo Video'}
+                  </p>
+                  <p className="text-sm text-gray-400">演示视频加载中...</p>
+                </div>
+              </video>
+              
+              {/* 底部关闭按钮 */}
+              <div className="mt-6 flex items-center justify-center space-x-4">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsVideoModalOpen(false);
+                  }}
+                  className="flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 rounded-full text-white transition-all duration-300"
+                >
+                  <X size={16} className="mr-2" />
+                  关闭视频
+                  <span className="text-xs ml-1">Close Video</span>
+                </button>
               </div>
-            </video>
+            </div>
           </div>
         </div>
       )}
@@ -607,86 +624,96 @@ const ProjectDetail = () => {
         <div 
           className="fixed inset-0 bg-black/95 z-40"
         >
-          {/* 关闭按钮 - 独立定位，不受padding影响 */}
-          <button
-            onClick={() => setIsGalleryModalOpen(false)}
-            className="fixed top-6 right-6 z-50 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-300"
-          >
-            <X size={24} />
-          </button>
-
-          {/* 弹性图片容器 - 第一屏居中 */}
+          {/* 弹性图片容器 - 顶部对齐 */}
           <div 
-            className="w-full h-screen flex items-center justify-center"
+            className="w-full h-screen flex justify-center items-start"
             style={{
               paddingLeft: '60px',
               paddingRight: '60px',
-              paddingTop: (project.id === '02' || project.id === '04' || project.id === '05') ? '300px' : '120px',
-              paddingBottom: '80px'
+              paddingTop: '80px',
+              paddingBottom: '120px'
             }}
             onClick={() => setIsGalleryModalOpen(false)}
           >
-            {/* 图片展示区域 */}
-            <div 
-              className="relative flex items-center justify-center max-w-full max-h-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={project.gallery[currentImageIndex]}
-                alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-                style={{
-                  maxWidth: (project.id === '02' || project.id === '05') ? '800px' : undefined,
-                  maxHeight: (project.id === '02' || project.id === '05') ? '600px' : undefined,
-                  minWidth: '300px',
-                  minHeight: '200px'
-                }}
-              />
-              
-              {/* 左右导航按钮 */}
-              {project.gallery.length > 1 && (
-                <>
-                  <button
-                    onClick={() => setCurrentImageIndex(prev => prev > 0 ? prev - 1 : project.gallery.length - 1)}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80 transition-all duration-300 shadow-lg"
-                  >
-                    <ArrowLeft size={20} />
-                  </button>
-                  <button
-                    onClick={() => setCurrentImageIndex(prev => prev < project.gallery.length - 1 ? prev + 1 : 0)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80 transition-all duration-300 shadow-lg"
-                  >
-                    <ArrowLeft size={20} className="rotate-180" />
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-
-          {/* 底部信息栏 - 固定在底部 */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/60 rounded-full px-6 py-3">
-            <div className="flex items-center space-x-6">
-              <div className="text-sm text-white">
-                {currentImageIndex + 1} / {project.gallery.length}
+            <div className="relative flex flex-col items-center max-w-full max-h-full">
+              {/* 图片展示区域 */}
+              <div 
+                className="relative flex items-center justify-center"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src={project.gallery[currentImageIndex]}
+                  alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                  style={{
+                    maxWidth: (project.id === '02' || project.id === '05') ? '800px' : '900px',
+                    maxHeight: (project.id === '02' || project.id === '05') ? '600px' : '700px',
+                    minWidth: '300px',
+                    minHeight: '200px'
+                  }}
+                />
+                
+                {/* 左右导航按钮 */}
+                {project.gallery.length > 1 && (
+                  <>
+                    <button
+                      onClick={() => setCurrentImageIndex(prev => prev > 0 ? prev - 1 : project.gallery.length - 1)}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80 transition-all duration-300 shadow-lg"
+                    >
+                      <ArrowLeft size={20} />
+                    </button>
+                    <button
+                      onClick={() => setCurrentImageIndex(prev => prev < project.gallery.length - 1 ? prev + 1 : 0)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80 transition-all duration-300 shadow-lg"
+                    >
+                      <ArrowLeft size={20} className="rotate-180" />
+                    </button>
+                  </>
+                )}
               </div>
               
-              {/* 分页点 */}
-              <div className="flex space-x-2">
-                {project.gallery.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                      index === currentImageIndex 
-                        ? 'bg-white' 
-                        : 'bg-white/30 hover:bg-white/50'
-                    }`}
-                  />
-                ))}
-              </div>
-              
-              <div className="text-sm text-gray-300">
-                {project.title}
+              {/* 图片信息和关闭按钮 */}
+              <div className="mt-6 flex flex-col items-center space-y-4">
+                {/* 图片信息栏 */}
+                <div className="bg-black/60 rounded-full px-6 py-3">
+                  <div className="flex items-center space-x-6">
+                    <div className="text-sm text-white">
+                      {currentImageIndex + 1} / {project.gallery.length}
+                    </div>
+                    
+                    {/* 分页点 */}
+                    <div className="flex space-x-2">
+                      {project.gallery.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                            index === currentImageIndex 
+                              ? 'bg-white' 
+                              : 'bg-white/30 hover:bg-white/50'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    
+                    <div className="text-sm text-gray-300">
+                      {project.title}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* 关闭按钮 */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsGalleryModalOpen(false);
+                  }}
+                  className="flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 rounded-full text-white transition-all duration-300"
+                >
+                  <X size={16} className="mr-2" />
+                  关闭图片
+                  <span className="text-xs ml-1">Close Image</span>
+                </button>
               </div>
             </div>
           </div>
@@ -699,89 +726,99 @@ const ProjectDetail = () => {
           className="fixed inset-0 bg-black/95 z-40"
           style={{ backgroundImage: 'none' }}
         >
-          {/* 关闭按钮 - 独立定位，不受padding影响 */}
-          <button
-            onClick={() => setIsShowcaseModalOpen(false)}
-            className="fixed top-6 right-6 z-50 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-300"
-          >
-            <X size={24} />
-          </button>
-
-          {/* 弹性图片容器 - 第一屏居中 */}
+          {/* 弹性图片容器 - 顶部对齐 */}
           <div 
-            className="w-full h-screen flex items-center justify-center"
+            className="w-full h-screen flex justify-center items-start"
             style={{
               paddingLeft: '100px',
               paddingRight: '100px',
-              paddingTop: '120px',
+              paddingTop: '80px',
               paddingBottom: '120px',
               backgroundImage: 'none'
             }}
             onClick={() => setIsShowcaseModalOpen(false)}
           >
-            {/* 图片展示区域 */}
-            <div 
-              className="relative flex items-center justify-center max-w-4xl max-h-[600px]"
-              style={{ backgroundImage: 'none' }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={project.showcase[currentShowcaseIndex]}
-                alt={`${project.title} - Showcase ${currentShowcaseIndex + 1}`}
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-                style={{
-                  maxWidth: '800px',
-                  maxHeight: '600px',
-                  minWidth: '200px',
-                  minHeight: '150px',
-                  backgroundImage: 'none'
-                }}
-              />
-              
-              {/* 左右导航按钮 */}
-              {project.showcase.length > 1 && (
-                <>
-                  <button
-                    onClick={() => setCurrentShowcaseIndex(prev => prev > 0 ? prev - 1 : project.showcase.length - 1)}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80 transition-all duration-300 shadow-lg"
-                  >
-                    <ArrowLeft size={20} />
-                  </button>
-                  <button
-                    onClick={() => setCurrentShowcaseIndex(prev => prev < project.showcase.length - 1 ? prev + 1 : 0)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80 transition-all duration-300 shadow-lg"
-                  >
-                    <ArrowLeft size={20} className="rotate-180" />
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-
-          {/* 底部信息栏 - 固定在底部 */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/60 rounded-full px-6 py-3">
-            <div className="flex items-center space-x-6">
-              <div className="text-sm text-white">
-                {currentShowcaseIndex + 1} / {project.showcase.length}
+            <div className="relative flex flex-col items-center max-w-full max-h-full">
+              {/* 图片展示区域 */}
+              <div 
+                className="relative flex items-center justify-center max-w-4xl max-h-[600px]"
+                style={{ backgroundImage: 'none' }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src={project.showcase[currentShowcaseIndex]}
+                  alt={`${project.title} - Showcase ${currentShowcaseIndex + 1}`}
+                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                  style={{
+                    maxWidth: '800px',
+                    maxHeight: '600px',
+                    minWidth: '200px',
+                    minHeight: '150px',
+                    backgroundImage: 'none'
+                  }}
+                />
+                
+                {/* 左右导航按钮 */}
+                {project.showcase.length > 1 && (
+                  <>
+                    <button
+                      onClick={() => setCurrentShowcaseIndex(prev => prev > 0 ? prev - 1 : project.showcase.length - 1)}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80 transition-all duration-300 shadow-lg"
+                    >
+                      <ArrowLeft size={20} />
+                    </button>
+                    <button
+                      onClick={() => setCurrentShowcaseIndex(prev => prev < project.showcase.length - 1 ? prev + 1 : 0)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80 transition-all duration-300 shadow-lg"
+                    >
+                      <ArrowLeft size={20} className="rotate-180" />
+                    </button>
+                  </>
+                )}
               </div>
               
-              {/* 分页点 */}
-              <div className="flex space-x-2">
-                {project.showcase.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentShowcaseIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                      index === currentShowcaseIndex 
-                        ? 'bg-white' 
-                        : 'bg-white/30 hover:bg-white/50'
-                    }`}
-                  />
-                ))}
-              </div>
-              
-              <div className="text-sm text-gray-300">
-                {project.title} - 更多作品赏析
+              {/* 图片信息和关闭按钮 */}
+              <div className="mt-6 flex flex-col items-center space-y-4">
+                {/* 图片信息栏 */}
+                <div className="bg-black/60 rounded-full px-6 py-3">
+                  <div className="flex items-center space-x-6">
+                    <div className="text-sm text-white">
+                      {currentShowcaseIndex + 1} / {project.showcase.length}
+                    </div>
+                    
+                    {/* 分页点 */}
+                    <div className="flex space-x-2">
+                      {project.showcase.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentShowcaseIndex(index)}
+                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                            index === currentShowcaseIndex 
+                              ? 'bg-white' 
+                              : 'bg-white/30 hover:bg-white/50'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    
+                    <div className="text-sm text-gray-300">
+                      {project.title} - 更多作品赏析
+                    </div>
+                  </div>
+                </div>
+                
+                {/* 关闭按钮 */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsShowcaseModalOpen(false);
+                  }}
+                  className="flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 rounded-full text-white transition-all duration-300"
+                >
+                  <X size={16} className="mr-2" />
+                  关闭作品赏析
+                  <span className="text-xs ml-1">Close Showcase</span>
+                </button>
               </div>
             </div>
           </div>

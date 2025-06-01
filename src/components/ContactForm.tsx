@@ -183,6 +183,18 @@ const ContactForm = ({ isVisible, onClose, targetElement, triggerButtonRef }: Co
       return 'Edison explores AI tools for product experiences! His AI research project increased user engagement by 75% using intelligent linking algorithms. 🤖';
     }
     
+    if (message.includes('design analysis') || message.includes('tinnove') || message.includes('data') || message.includes('设计分析')) {
+      return 'Edison\'s Design Analysis project for Tinnove automotive OS improved user task completion by 50% and reduced errors by 35%! He analyzed UI patterns across multiple OS versions to enhance user experience. 📊';
+    }
+    
+    if (message.includes('brand') || message.includes('illustration') || message.includes('品牌')) {
+      return 'Edison has 10+ years of brand design experience! His creative work increased brand recognition by 200% and customer engagement by 150%. He specializes in visual identity and illustration. 🎨';
+    }
+    
+    if (message.includes('system') || message.includes('specification') || message.includes('团队')) {
+      return 'Edison\'s System Design work reduced project delivery time by 40% and operational costs by 60%! He creates unified standards that enhance team efficiency. ⚙️';
+    }
+    
     return 'That\'s an interesting question! 🤔 I can tell you about Edison\'s projects, skills, experience, or how to contact him. What would you like to know more about?';
   };
 

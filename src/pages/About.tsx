@@ -4,14 +4,14 @@ import FlowingLinesBackground from '../components/FlowingLinesBackground';
 
 const About = () => {
   console.log('About page rendered'); // 调试信息
-  
+
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* 流光线条动态背景 - 覆盖整个首屏 */}
       <div className="fixed inset-0 w-screen h-screen z-0">
         <FlowingLinesBackground />
-      </div>
-      
+          </div>
+
       <section className="px-6 lg:px-12 py-32 relative z-20">
         <div className="max-w-6xl mx-auto">
           {/* 标题区域 - 左对齐 */}
@@ -98,8 +98,8 @@ const About = () => {
                       <li>• 利用AI工具建立敏捷开发与设计协同机制，推动产研协作效率提升50%及部门协作机制，推动设计驱动业务创新。</li>
                     </ul>
                   </div>
-                </div>
-              </div>
+          </div>
+        </div>
 
               {/* 工作经历3 */}
               <div className="border-l-2 border-gray-800 pl-8 py-6 hover:border-gray-600 transition-colors duration-300">
@@ -119,9 +119,9 @@ const About = () => {
                       <li>• 结合场景分析与用户行为数据，推导并设计出智能功能矩阵，使核心功能（智驾地图、语音、0重力座舱座椅、头枕环绕音响等）使用率提40%，并构建用户行为分析体系，结合市场调研与竞品分析，为产品迭代提供数据支持，最大限度完成产品的商业价值。</li>
                       <li>• 推动跨部门协作与AI工具应用，确保多个创新项目并行交付。</li>
                     </ul>
-                  </div>
-                </div>
-              </div>
+          </div>
+          </div>
+        </div>
 
               {/* 工作经历4 */}
               <div className="border-l-2 border-gray-800 pl-8 py-6 hover:border-gray-600 transition-colors duration-300">
@@ -133,7 +133,7 @@ const About = () => {
                   <div className="lg:col-span-1">
                     <h4 className="text-base font-light text-gray-300 mb-2">Product Design Director</h4>
                     <p className="text-sm text-gray-500">产品设计总监</p>
-                  </div>
+                    </div>
                   <div className="lg:col-span-2">
                     <ul className="text-gray-400 text-sm leading-relaxed space-y-2">
                       <li>• 协助CEO制定车联网创新产品战略、设计规划、概念设定及项目落地，并主导座舱智能系统（TOS1.0-3.0）全局系统设计。</li>
@@ -161,10 +161,10 @@ const About = () => {
                       <li>• 结合数据分析体系（红黑榜），通过定量与定性数据，制定产品体验评价标准。并使用用户反馈与数据分析，建立用户体验改进机制，提升用户满意度15%。</li>
                       <li>• 统一平台产品规发，制定一致性标准，确保产品体验的持续优化。</li>
                     </ul>
-                  </div>
-                </div>
               </div>
-
+            </div>
+              </div>
+              
               {/* 工作经历6 */}
               <div className="border-l-2 border-gray-800 pl-8 py-6 hover:border-gray-600 transition-colors duration-300">
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -298,8 +298,8 @@ const About = () => {
                         {skill}
                       </span>
                     ))}
-                  </div>
-                </div>
+          </div>
+        </div>
                 
                 <div>
                   <h3 className="text-lg font-light text-white mb-4">Research & Innovation</h3>
@@ -308,7 +308,7 @@ const About = () => {
                       'User Research & Data Analysis', 
                       'AI Exploration & Application'
                     ].map((skill) => (
-                      <span 
+                  <span
                         key={skill} 
                         className="px-3 py-1 bg-gray-900 border border-gray-700 rounded-full text-sm text-gray-300
                                  hover:bg-gray-800 hover:border-gray-600 hover:text-white hover:scale-105 
@@ -316,12 +316,12 @@ const About = () => {
                                  hover:shadow-lg hover:shadow-gray-700/50"
                       >
                         {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                  </span>
+                ))}
               </div>
             </div>
+          </div>
+        </div>
 
             {/* 教育背景 */}
             <div className="mt-16 pt-12 border-t border-gray-800">
@@ -342,10 +342,10 @@ const About = () => {
                   </div>
                   <div className="lg:col-span-1">
                     <p className="text-sm text-gray-400">Shanghai</p>
-                  </div>
-                </div>
               </div>
             </div>
+          </div>
+        </div>
 
             {/* 联系信息 */}
             <div className="mt-16 pt-12 border-t border-gray-800">
@@ -359,7 +359,7 @@ const About = () => {
                 <div>
                   <p className="text-gray-400 mb-4">
                     Currently available for new projects and collaborations.
-                    <br />
+                  <br />
                     <span className="text-sm text-gray-500">目前接受新项目和合作机会。</span>
                   </p>
                   <a 
@@ -399,4 +399,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default About; 
