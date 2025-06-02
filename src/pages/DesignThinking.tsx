@@ -381,56 +381,97 @@ const DesignThinking: React.FC = () => {
 
         {/* 第三部分：实践案例 */}
         <AnimatedSection className="content-section">
-          <div className="space-y-12">
-            <h3 className="text-3xl md:text-4xl font-light text-white">
-              关于AI在座舱内的畅想
-              <br />
-              <span className="text-2xl md:text-3xl text-gray-500">Case Study Analysis</span>
-            </h3>
-            
-            <div className="max-w-4xl">
-              <div className="space-y-6">
-                <h4 className="text-2xl font-light text-white">
-                  HMI体验的重塑和车内旅程的Update
-                </h4>
-                
-                <div className="space-y-4 text-gray-300 leading-relaxed">
-                  <p>
-                    <strong className="text-white">挑战：</strong>
-                    传统汽车界面复杂难用，驾驶员在行驶过程中难以快速找到所需功能，在AI浪潮的驱动下，智能汽车有什么新的变革
-                  </p>
+          <div className="space-y-12 relative">
+            {/* 添加光束效果 */}
+            <div 
+              className="absolute -inset-x-[600px] -top-12 flex h-[500px] grow opacity-50" 
+              style={{
+                maskImage: 'linear-gradient(to top, rgba(255, 255, 255, 0), rgb(255, 255, 255))',
+                opacity: '0.5',
+                transform: 'none'
+              }}
+            >
+              <div 
+                className="grow" 
+                style={{
+                  background: 'conic-gradient(from 90deg at 35% -1% in lab, rgb(255, 255, 255) 7.2deg, rgb(156 184 221) 14.4deg, rgba(17, 17, 17, 0) 36deg, rgba(17, 17, 17, 0) 342deg, rgb(255, 255, 255) 360deg)'
+                }}
+              />
+              <div 
+                className="grow" 
+                style={{
+                  background: 'conic-gradient(from -90deg at 65% -1% in lab, rgb(255, 255, 255) 0deg, rgba(17, 17, 17, 0) 18deg, rgba(17, 17, 17, 0) 324deg, rgb(156 184 221) 345.6deg, rgb(255, 255, 255) 352.8deg)'
+                }}
+              />
+            </div>
+
+            {/* 内容区域 */}
+            <div className="relative z-10">
+              <h3 className="text-3xl md:text-4xl font-light text-white">
+                关于AI在座舱内的畅想
+                <br />
+                <span className="text-2xl md:text-3xl text-gray-500">Case Study Analysis</span>
+              </h3>
+              
+              <div className="max-w-4xl mt-12">
+                <div className="space-y-6">
+                  <h4 className="text-2xl font-light text-white">
+                    HMI体验的重塑和车内旅程的Update
+                  </h4>
                   
-                  <p>
-                    <strong className="text-white">"座舱全局体验"的核心特质：</strong>
-                  </p>
-                  
-                  <ul className="space-y-2 ml-4">
-                    <li>• <strong>高度主动性 (Proactive)：</strong> 系统能预知您的需求，在您开口之前就提供服务或建议。</li>
-                    <li>• <strong>极致流畅性 (Fluid)：</strong>各种交互方式（语音、手势、HMI）无缝融合，信息和功能在最需要的时候以最自然的方式呈现。</li>
-                    <li>• <strong>深度个性化 (Deeply Personalized)：</strong>充分理解每一位乘客的独特性，并据此调整服务和体验的方方面面</li>
-                    <li>• <strong>情境自适应 (Contextually Adaptive)：</strong>实时感知并响应车内外环境、乘客状态以及旅程动态的变化。</li>
-                    <li>• <strong>生成创造性 (Generative & Creative)：</strong>界面、内容、甚至部分体验本身，都可以由AI根据情境动态生成，而非仅仅是预设。</li>
-                    <li>• <strong>情感连接性 (Emotionally Connected)：</strong>AI能理解并适度回应乘客的情感，提供更具人文关怀的互动。</li>
-                  </ul>
-                  
-                  <p>
-                    <strong className="text-white">我们可能可以做的：</strong>
-                    主动式情境感知与任务智能协同 (Proactive Contextual Awareness & Intelligent Task Orchestration)
-
-座舱AI能主动洞察用户潜在需求和当前情境，智能发起并协同完成如旅行规划、日程管理等复杂任务，实现从日常对话到具体行动的无缝转换。
-生成式多模态人机界面共创 (Generative Multimodal HMI Co-Creation)
-
-用户可通过自然语言或手势与AI共同设计座舱界面，AI实时生成动态、个性化的人机交互元素与视觉内容（如AR导航、氛围影像），打造"心随意动"的HMI体验。
-深度个性化自适应体验引擎 (Deeply Personalized Adaptive Experience Engine)
-
-AI深度融合乘客画像、历史偏好、实时情境及OMS数据，为每位乘客动态调整并提供高度个性化的信息娱乐、座舱环境及健康舒适服务。
-"规划即体验"的无缝旅程管理 (Seamless "Planning-is-Experiencing" Journey Management)
-
-AI将行程规划、自动驾驶导航、途中动态调整与情境信息服务（如"随境解说家"）融为一体，实现从方案共创到沉浸式旅程体验的无缝衔接与智能护航。
-座舱化身"创享体验中心" (Cockpit as a "Co-Creative Experience Hub")
-
-AI将座舱转变为支持多用户协作、内容共创（如旅行Vlog智能剪辑、AR互动游戏）及共享娱乐的智能空间，增强人际连接与出行乐趣。
-                  </p>
+                  <div className="space-y-4 text-gray-300 leading-relaxed">
+                    <p>
+                      <strong className="text-white">挑战：</strong>
+                      传统汽车界面复杂难用，驾驶员在行驶过程中难以快速找到所需功能，在AI浪潮的驱动下，智能汽车有什么新的变革
+                    </p>
+                    
+                    <p>
+                      <strong className="text-white">"座舱全局体验"的核心特质：</strong>
+                    </p>
+                    
+                    <ul className="space-y-2 ml-4">
+                      <li>• <strong>高度主动性 (Proactive)：</strong> 系统能预知您的需求，在您开口之前就提供服务或建议。</li>
+                      <li>• <strong>极致流畅性 (Fluid)：</strong>各种交互方式（语音、手势、HMI）无缝融合，信息和功能在最需要的时候以最自然的方式呈现。</li>
+                      <li>• <strong>深度个性化 (Deeply Personalized)：</strong>充分理解每一位乘客的独特性，并据此调整服务和体验的方方面面</li>
+                      <li>• <strong>情境自适应 (Contextually Adaptive)：</strong>实时感知并响应车内外环境、乘客状态以及旅程动态的变化。</li>
+                      <li>• <strong>生成创造性 (Generative & Creative)：</strong>界面、内容、甚至部分体验本身，都可以由AI根据情境动态生成，而非仅仅是预设。</li>
+                      <li>• <strong>情感连接性 (Emotionally Connected)：</strong>AI能理解并适度回应乘客的情感，提供更具人文关怀的互动。</li>
+                    </ul>
+                    
+                    <p>
+                      <strong className="text-white">我们可能可以做的：</strong>
+                    </p>
+                    <p>
+                      主动式情境感知与任务智能协同 (Proactive Contextual Awareness & Intelligent Task Orchestration)
+                    </p>
+                    <p>
+                      座舱AI能主动洞察用户潜在需求和当前情境，智能发起并协同完成如旅行规划、日程管理等复杂任务，实现从日常对话到具体行动的无缝转换。
+                    </p>
+                    <p>
+                      生成式多模态人机界面共创 (Generative Multimodal HMI Co-Creation)
+                    </p>
+                    <p>
+                      用户可通过自然语言或手势与AI共同设计座舱界面，AI实时生成动态、个性化的人机交互元素与视觉内容（如AR导航、氛围影像），打造"心随意动"的HMI体验。
+                    </p>
+                    <p>
+                      深度个性化自适应体验引擎 (Deeply Personalized Adaptive Experience Engine)
+                    </p>
+                    <p>
+                      AI深度融合乘客画像、历史偏好、实时情境及OMS数据，为每位乘客动态调整并提供高度个性化的信息娱乐、座舱环境及健康舒适服务。
+                    </p>
+                    <p>
+                      "规划即体验"的无缝旅程管理 (Seamless "Planning-is-Experiencing" Journey Management)
+                    </p>
+                    <p>
+                      AI将行程规划、自动驾驶导航、途中动态调整与情境信息服务（如"随境解说家"）融为一体，实现从方案共创到沉浸式旅程体验的无缝衔接与智能护航。
+                    </p>
+                    <p>
+                      座舱化身"创享体验中心" (Cockpit as a "Co-Creative Experience Hub")
+                    </p>
+                    <p>
+                      AI将座舱转变为支持多用户协作、内容共创（如旅行Vlog智能剪辑、AR互动游戏）及共享娱乐的智能空间，增强人际连接与出行乐趣。
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

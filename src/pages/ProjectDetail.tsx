@@ -290,15 +290,11 @@ const ProjectDetail = () => {
       // 页面进入动画
       gsap.fromTo(heroRef.current, 
         { 
-          scale: 0.8, 
-          opacity: 0,
-          y: 100 
+          opacity: 0
         },
         { 
-          scale: 1, 
           opacity: 1,
-          y: 0,
-          duration: 1.2,
+          duration: 3.5,
           ease: "power3.out"
         }
       );
@@ -347,10 +343,31 @@ const ProjectDetail = () => {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-black pt-20">
-
-
       {/* Hero区域 */}
-      <section ref={heroRef} className="px-6 lg:px-12 py-16">
+      <section ref={heroRef} className="px-6 lg:px-12 py-16 relative">
+        {/* 添加光束效果 */}
+        <div 
+          className="absolute -inset-x-[600px] -top-20 flex h-[500px] grow opacity-50" 
+          style={{
+            maskImage: 'linear-gradient(to top, rgba(255, 255, 255, 0), rgb(255, 255, 255))',
+            opacity: '0.5',
+            transform: 'none'
+          }}
+        >
+          <div 
+            className="grow" 
+            style={{
+              background: 'conic-gradient(from 90deg at 35% -1% in lab, rgb(255, 255, 255) 7.2deg, rgb(156 184 221) 14.4deg, rgba(17, 17, 17, 0) 36deg, rgba(17, 17, 17, 0) 342deg, rgb(255, 255, 255) 360deg)'
+            }}
+          />
+          <div 
+            className="grow" 
+            style={{
+              background: 'conic-gradient(from -90deg at 65% -1% in lab, rgb(255, 255, 255) 0deg, rgba(17, 17, 17, 0) 18deg, rgba(17, 17, 17, 0) 324deg, rgb(156 184 221) 345.6deg, rgb(255, 255, 255) 352.8deg)'
+            }}
+          />
+        </div>
+
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* 项目信息 */}

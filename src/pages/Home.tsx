@@ -340,29 +340,6 @@ const Home = () => {
         opacity: 0.95 // 提高初始透明度
       });
 
-      // Hero区域退出效果 - 增强模糊效果
-      ScrollTrigger.create({
-        trigger: projectsRef.current,
-        start: "top 100%",
-        end: "top 60%",
-        scrub: 1,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const heroElement = document.querySelector('.three-hero-container');
-          
-          if (heroElement) {
-            gsap.to(heroElement, {
-              y: progress * -50,
-              scale: 1 - progress * 0.08,
-              opacity: 1 - progress * 0.25,
-              filter: `blur(${progress * 18}px) brightness(${1 - progress * 0.4}) contrast(${1 - progress * 0.2})`, // 增强模糊和亮度变化
-              duration: 0.1,
-              ease: "none"
-            });
-          }
-        }
-      });
-
       // 3D Hero到项目区域的转场效果 - 增强模糊效果
       ScrollTrigger.create({
         trigger: projectsRef.current,
@@ -377,7 +354,6 @@ const Home = () => {
             filter: `blur(${(1 - progress) * 22}px) brightness(${0.6 + progress * 0.4}) contrast(${0.8 + progress * 0.2})`, // 大幅增强模糊效果
             rotationX: (1 - progress) * 12, // 增加旋转角度
             z: (1 - progress) * -40, // 增加Z轴偏移
-            scale: 0.92 + progress * 0.08, // 增加缩放变化
             opacity: 0.7 + progress * 0.3, // 调整透明度范围
             duration: 0.1,
             ease: "none"

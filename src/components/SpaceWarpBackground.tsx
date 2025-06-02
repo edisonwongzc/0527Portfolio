@@ -124,7 +124,7 @@ class Star {
     const x = this.x / (this.z * 0.0001);
     const y = this.y / (this.z * 0.0001);
     
-    const centerX = canvasWidth / 2;
+    const centerX = canvasWidth / 2 + (canvasWidth * 0.2); // 向右偏移20%
     const centerY = canvasHeight / 2;
     
     const screenX = x + centerX;
