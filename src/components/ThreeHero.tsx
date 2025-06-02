@@ -184,14 +184,25 @@ const ThreeHero = () => {
         <SpaceWarpBackground />
         
         {/* 新的Canvas光束背景 - 使用conic-gradient和canvas */}
-        <div className="absolute -inset-y-[25%] -right-24 flex w-[100vw] flex-col md:-right-6 md:w-[1200px] blur" 
+        <div className="absolute -inset-y-[25%] -right-24 flex w-[100vw] flex-col md:-right-6 md:w-[1200px] blur opacity-0" 
              style={{
                maskImage: 'linear-gradient(to right, rgba(255, 255, 255, 0), rgb(255, 255, 255))', 
-               opacity: 1, 
+               opacity: 0, 
                transform: 'none',
                zIndex: 2, 
-               transformStyle: 'preserve-3d'
+               transformStyle: 'preserve-3d',
+               animation: 'fadeIn 4s ease-out forwards'
              }}>
+          <style>{`
+            @keyframes fadeIn {
+              from {
+                opacity: 0;
+              }
+              to {
+                opacity: 1;
+              }
+            }
+          `}</style>
           {/* 上半部分光束 */}
           <div className="grow" 
                style={{
