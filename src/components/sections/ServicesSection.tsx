@@ -102,7 +102,7 @@ const ServicesSection = forwardRef<HTMLDivElement, ServicesSectionProps>(
         </div>
 
         {/* 服务展示卡片 */}
-        <div className="space-y-8">
+        <div className="space-y-8 pr-0 lg:pr-0">
           {/* 服务卡片1 - Design Thinking Exploration */}
           <Link 
             to="/design-thinking" 
@@ -135,16 +135,12 @@ const ServicesSection = forwardRef<HTMLDivElement, ServicesSectionProps>(
                 </div>
               </div>
               
-              <div style={{ pointerEvents: 'none' }}>
-                <h3 className="text-lg font-light text-white mb-2 group-hover:text-gray-300 transition-colors duration-300">
-                  Design Thinking Exploration
-                  <br />
-                  <span className="text-base text-gray-500">设计思路探索</span>
+              <div style={{ pointerEvents: 'none' }} className="pr-0">
+                <h3 className="text-lg font-light text-white mb-2 group-hover:text-gray-300 transition-colors duration-300 whitespace-nowrap overflow-hidden">
+                  Design Thinking Exploration <span className="text-base text-gray-500">设计思路探索</span>
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  Exploring innovative design methodologies and creative problem-solving approaches.
-                  <br />
-                  <span className="text-xs text-gray-600">探索创新设计方法论和创意问题解决途径。</span>
+                <p className="text-gray-500 text-sm leading-relaxed whitespace-nowrap overflow-hidden">
+                  Innovative design methodologies and creative problem-solving. <span className="text-xs text-gray-600">创新设计方法论和创意问题解决。</span>
                 </p>
               </div>
             </div>

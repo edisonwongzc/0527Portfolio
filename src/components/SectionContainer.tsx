@@ -44,15 +44,15 @@ const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(({
   const getPaddingStyles = () => {
     switch (padding) {
       case 'sm':
-        return 'px-6 lg:px-12 py-16';
+        return variant === 'services' ? 'pl-6 lg:pl-12 pr-2 lg:pr-4 py-16' : 'px-6 lg:px-12 py-16';
       case 'md':
-        return 'px-6 lg:px-12 py-24';
+        return variant === 'services' ? 'pl-6 lg:pl-12 pr-2 lg:pr-4 py-24' : 'px-6 lg:px-12 py-24';
       case 'lg':
-        return 'px-6 lg:px-12 py-32';
+        return variant === 'services' ? 'pl-6 lg:pl-12 pr-2 lg:pr-4 py-32' : 'px-6 lg:px-12 py-32';
       case 'xl':
-        return 'px-6 lg:px-12 py-40';
+        return variant === 'services' ? 'pl-6 lg:pl-12 pr-2 lg:pr-4 py-40' : 'px-6 lg:px-12 py-40';
       default:
-        return 'px-6 lg:px-12 py-32';
+        return variant === 'services' ? 'pl-6 lg:pl-12 pr-2 lg:pr-4 py-32' : 'px-6 lg:px-12 py-32';
     }
   };
 

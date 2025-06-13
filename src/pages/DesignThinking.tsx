@@ -381,32 +381,9 @@ const DesignThinking: React.FC = () => {
 
         {/* 第三部分：实践案例 */}
         <AnimatedSection className="content-section">
-          <div className="space-y-12 relative">
-            {/* 添加光束效果 */}
-            <div 
-              className="absolute -inset-x-[600px] -top-12 flex h-[500px] grow opacity-50" 
-              style={{
-                maskImage: 'linear-gradient(to top, rgba(255, 255, 255, 0), rgb(255, 255, 255))',
-                opacity: '0.5',
-                transform: 'none'
-              }}
-            >
-              <div 
-                className="grow" 
-                style={{
-                  background: 'conic-gradient(from 90deg at 35% -1% in lab, rgb(255, 255, 255) 7.2deg, rgb(156 184 221) 14.4deg, rgba(17, 17, 17, 0) 36deg, rgba(17, 17, 17, 0) 342deg, rgb(255, 255, 255) 360deg)'
-                }}
-              />
-              <div 
-                className="grow" 
-                style={{
-                  background: 'conic-gradient(from -90deg at 65% -1% in lab, rgb(255, 255, 255) 0deg, rgba(17, 17, 17, 0) 18deg, rgba(17, 17, 17, 0) 324deg, rgb(156 184 221) 345.6deg, rgb(255, 255, 255) 352.8deg)'
-                }}
-              />
-            </div>
-
+          <div className="space-y-12">
             {/* 内容区域 */}
-            <div className="relative z-10">
+            <div>
               <h3 className="text-3xl md:text-4xl font-light text-white">
                 关于AI在座舱内的畅想
                 <br />
